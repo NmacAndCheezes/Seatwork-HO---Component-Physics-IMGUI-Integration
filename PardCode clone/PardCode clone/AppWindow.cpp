@@ -83,8 +83,9 @@ void AppWindow::onCreate()
 
 
 	
-#if 0
-	for (int i = 0; i < 50; i++)
+#if 1
+	TexturePtr m_wood_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"./Assets/Textures/brick.png");
+	for (int i = 0; i < 10; i++)
 	{
 		float x = ((float(rand()) / float(RAND_MAX)) * 1.5f) - 0.75f;
 		float y = ((float(rand()) / float(RAND_MAX)) * 1.5f) - 0.75f;
@@ -92,15 +93,9 @@ void AppWindow::onCreate()
 
 
 		Cube* cube = new Cube(m_wood_tex);
-		cube->getTransform()->SetPosition(Vector3D(x, y, z));
-		cube->getTransform()->SetRotation(Vector3D(0, 0, 0));
-		cube->getTransform()->SetScale(Vector3D(0.2f, 0.2f, 0.2f));
-
-		x = ((float(rand()) / float(RAND_MAX)) * ((1 - -1) + -1));
-		y = ((float(rand()) / float(RAND_MAX)) * ((1 - -1) + -1));
-		z = ((float(rand()) / float(RAND_MAX)) * ((1 - -1) + -1));
-		Rotator* rotator = new Rotator(Vector3D(x, y, z));
-		cube->attachComponent(rotator);
+		cube->getTransform()->SetLocalPosition(Vector3D(x, y + 6.0f, z));
+		cube->getTransform()->SetLocalRotation(Vector3D(0, 0, 0));
+		//cube->getTransform()->SetLocalScale(Vector3D(0.2f, 0.2f, 0.2f));
 	}
 #endif
 	EditorUIManager::initialize(this->m_hwnd);

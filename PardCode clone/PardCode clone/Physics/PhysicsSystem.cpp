@@ -84,6 +84,17 @@ void PhysicsSystem::unregisterComponentByName(std::string name)
 	}
 }
 
+PhysicsComponent* PhysicsSystem::findComponentByName(std::string name)
+{
+	if (this->componentTable[name] != NULL) {
+		return this->componentTable[name];
+	}
+	else {
+		std::cout << "Physics Component " << name << " cannot be found \n";
+		return nullptr;
+	}
+}
+
 reactphysics3d::PhysicsWorld* PhysicsSystem::getPhysicsWorld()
 {
 	return this->m_pw;

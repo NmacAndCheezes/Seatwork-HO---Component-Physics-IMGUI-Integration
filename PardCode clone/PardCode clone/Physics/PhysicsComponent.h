@@ -15,8 +15,11 @@ public:
 
 	//reactphysics3d::RigidBody* getRigidBody();
 	void setBodyType(reactphysics3d::BodyType bt);
+	bool getEnabledGravity() { return this->enableGravity; }
+	void setEnabledGravity(bool enabled) { enableGravity = enabled; }
 private:
 	float mass = 1000.0f; //in kilograms
+	bool enableGravity = true;
 	reactphysics3d::RigidBody* rigidBody;
 	reactphysics3d::BodyType bodyType = reactphysics3d::BodyType::DYNAMIC;
 };

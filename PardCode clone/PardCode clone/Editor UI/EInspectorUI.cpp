@@ -4,6 +4,9 @@
 #include "../AGameObject.h"
 #include "../InputSystem.h"
 #include "../EditorStates/EditorActions/EditorActionHistory.h"
+#include "../Physics/PhysicsComponent.h"
+#include "../Physics/PhysicsSystem.h"
+#include "../ECS Systems/BaseComponentSystem.h"
 
 
 EInspectorUI::EInspectorUI(EHeirarcyUI* heirarcy) : m_heirarcy(heirarcy)
@@ -61,6 +64,25 @@ void EInspectorUI::update()
 		ImGui::DragFloat3("Position", pos);
 		ImGui::DragFloat3("Rotation", rot);
 		ImGui::DragFloat3("Scale", scale);
+
+		std::string p6name = "P6 component" + selected->getId();
+		PhysicsComponent* p6 = BaseComponentSystem::get()->getPhysicsSystem()->findComponentByName(p6name);
+		if (p6 == nullptr)
+		{
+			if (ImGui::Button("Add Physics"))
+			{
+				p6 = new PhysicsComponent(p6name);
+				selected->attachComponent(p6);
+			}
+		}
+		else
+		{
+			enableGrav = p6->getEnabledGravity();
+			if (ImGui::Checkbox("EnableGravity", &enableGrav))
+			{
+				p6->setEnabledGravity(enableGrav);
+			}
+		}
 
 		selected->setActive(isActive);
 		selected->getTransform()->SetLocalPosition(Vector3D(pos[0], pos[1], pos[2]));

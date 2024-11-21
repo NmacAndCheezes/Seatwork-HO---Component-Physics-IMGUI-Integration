@@ -24,6 +24,7 @@ EditorUIManager::EditorUIManager(HWND hwnd)
 	ImGui_ImplWin32_Init(hwnd);
 	ImGui_ImplDX11_Init(GraphicsEngine::get()->getRenderSystem()->getID3D11Device(), GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext().get()->getID3D11DeviceContext());
 	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
 	EToolBar* tb = new EToolBar();
 	m_UIScreenList["Tool Bar"] = tb;
 

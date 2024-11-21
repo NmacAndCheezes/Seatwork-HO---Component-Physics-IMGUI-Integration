@@ -29,6 +29,7 @@ void PhysicsComponent::Init()
 	this->rigidBody = physicsWorld->createRigidBody(transform);
 	this->rigidBody->addCollider(boxShape, transform);
 	this->rigidBody->updateMassPropertiesFromColliders();
+	this->rigidBody->enableGravity(enableGravity);
 	this->rigidBody->setMass(this->mass);
 	setBodyType(bodyType);
 }
